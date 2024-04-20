@@ -3,11 +3,6 @@ from core import *
 import ui_functions as user_in
 import ui_output as user_show
 
-grid = grid(4)
-
-def update(new):
-    gameplay.current.update(new)
-    gameplay.matrix = new
 
 while True:
     action = user_in.get_string("choice", ["W","A","S","D"])
