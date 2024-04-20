@@ -6,6 +6,7 @@ import game_functions as actions
 current = grid(4)
 
 def process(lines, reverse = False):
+    old = lines
     for i in range(len(lines)):
         line = lines[i]
         line = actions.swipe(line, current.size)
