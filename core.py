@@ -5,33 +5,32 @@ class grid:
         for row in range(size):
             rows.append([0] * size)
         self.rows = rows
-        self.columns = columnize(self.rows)
+        self.columns = invert(self.rows, self.size)
     def vertical(self, reverse = False):
         out = []
         for column in self.columns:
-            if reverse: column = column[::-1]
+            if reverse:
+                column = column[::-1]
             out.append(column)
         return out
     def horizontal(self, reverse = False):
         out = []
         for row in self.rows:
-            if reverse: row = row[::-1]
+            if reverse:
+                row = row[::-1]
             out.append(row)
         return out
     def update(self,rows):
         self.rows = rows
-        self.columns = columnize(rows)
+        self.columns = invert(rows, self.size)
 
-def columnize(rows):
-    columns = []
+def invert(lines, size = None):
+    if not size:
+        size = len(lines)
+    sideways = []
     for col_pos in range(size):
-        column = []
-        for row in rows:
-            column.append(row[col_pos])
-        columns.append(column)
-    return columns
-
-
-def swipe_down(grid):
-    columns = grid.vertical(reverse = True)
-    
+        alt = []
+        for line in lines:
+            alt.append(line[col_pos])
+        sideways.append(alt)
+    return sideways
